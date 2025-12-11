@@ -1,3 +1,4 @@
+// Footer shows core Lucid contact + location details on every page.
 export function Footer() {
   const year = new Date().getFullYear();
 

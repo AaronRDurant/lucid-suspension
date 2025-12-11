@@ -48,6 +48,7 @@ function getSizeClasses(size: Size) {
   }
 }
 
+// CTAButton is the primary action button for email, checkout, and portal actions.
 export function CTAButton(props: CTAButtonProps) {
   const {
     variant = "primary",

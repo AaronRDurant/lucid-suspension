@@ -11,6 +11,7 @@ type VerticalNavProps = {
   className?: string;
 };
 
+// VerticalNav is the fixed-position nav used in the main site shell.
 export function VerticalNav({
   items,
   activeHref,

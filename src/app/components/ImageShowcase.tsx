@@ -15,6 +15,7 @@ type ImageShowcaseProps = {
   className?: string;
 };
 
+// ImageShowcase displays process/results imagery in a consistent layout.
 export function ImageShowcase({
   mode = "single",
   images,

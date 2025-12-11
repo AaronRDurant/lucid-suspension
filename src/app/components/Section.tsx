@@ -11,6 +11,7 @@ type SectionProps = {
   className?: string;
 };
 
+// Section wraps page content blocks with consistent spacing and optional borders.
 export function Section({
   id,
   eyebrow,

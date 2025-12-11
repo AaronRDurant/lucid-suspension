@@ -10,6 +10,7 @@ type ContentBlockProps = {
   className?: string;
 };
 
+// ContentBlock is the soft card style for key ideas, lists, or small callouts.
 export function ContentBlock({
   as: Component = "article",
   eyebrow,

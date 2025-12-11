@@ -3,6 +3,7 @@ type GradientDividerProps = {
   className?: string;
 };
 
+// GradientDivider is the Lucid-branded accent line for emphasis, not generic separation.
 export function GradientDivider({
   orientation = "horizontal",
   className,

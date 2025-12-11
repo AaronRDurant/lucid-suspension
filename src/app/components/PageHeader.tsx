@@ -10,6 +10,7 @@ type PageHeaderProps = {
   className?: string;
 };
 
+// PageHeader is the hero-style header for top-of-page intros.
 export function PageHeader({
   eyebrow,
   title,
