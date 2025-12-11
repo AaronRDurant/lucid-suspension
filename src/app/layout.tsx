@@ -3,28 +3,31 @@ import type { ReactNode } from "react";
 
 import "./globals.css";
 import { inter } from "./fonts";
-
 import { Footer } from "./components/Footer";
+import { siteConfig } from "./lib/site-config";
 
+type RootLayoutProps = {
+  children: ReactNode;
+};
+
+// placeholder for future global providers (auth, theme, analytics, etc.)
 function Providers({ children }: { children: ReactNode }) {
-  // placeholder for future global providers (auth, theme, analytics, etc.)
   return children;
 }
 
 export const metadata: Metadata = {
-  title: "Lucid Suspension",
-  description:
-    "Suspension, made clear. A transparent, rider-first approach to dirt bike fork and shock service — coming 2026.",
+  metadataBase: new URL(siteConfig.baseUrl),
+  title: siteConfig.name,
+  description: siteConfig.description,
 
   openGraph: {
-    title: "Lucid Suspension",
-    description:
-      "Suspension, made clear. A transparent, rider-first approach to dirt bike fork and shock service — coming 2026.",
-    url: "https://lucidsuspension.com",
-    siteName: "Lucid Suspension",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.baseUrl,
+    siteName: siteConfig.name,
     images: [
       {
-        url: "/meta.png",
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
       },
@@ -34,10 +37,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Lucid Suspension",
-    description:
-      "Suspension, made clear. A transparent, rider-first approach to dirt bike fork and shock service — coming 2026.",
-    images: ["/meta.png"],
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
   },
 
   icons: {
@@ -58,7 +60,7 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
