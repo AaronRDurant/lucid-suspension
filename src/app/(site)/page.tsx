@@ -6,18 +6,6 @@ export default function HomePage() {
         <div className="h-full w-[6px] rounded-full bg-gradient-to-b from-[#ff3b1f] via-[#6a00ff] to-[#00eaff]" />
       </div>
 
-      {/* desktop aside */}
-      <aside className="pointer-events-auto fixed bottom-10 right-8 hidden md:flex flex-col items-end gap-2 text-[0.7rem] font-medium tracking-[0.22em] uppercase">
-        <span className="text-neutral-500">Suspension, made clear</span>
-        <span className="text-neutral-500">Coming 2026</span>
-        <a
-          href="mailto:aaron@lucidsuspension.com"
-          className="mt-2 rounded-full border border-neutral-300 px-5 py-2 text-[0.7rem] tracking-[0.2em] text-neutral-900 transition hover:bg-neutral-900 hover:text-white"
-        >
-          Email Lucid
-        </a>
-      </aside>
-
       {/* mobile header */}
       <header className="mb-10 flex items-center justify-between lg:hidden">
         <span className="text-xs font-semibold uppercase tracking-[0.25em]">
@@ -52,7 +40,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* why Lucid */}
+      {/* why lucid */}
       <section className="scroll-mt-24">
         <div className="max-w-3xl border-t border-neutral-100 pt-16 pb-16 lg:pt-24 lg:pb-24">
           <h2 className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-600">
@@ -133,7 +121,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* the Lucid Experience */}
+      {/* the lucid experience */}
       <section className="scroll-mt-24">
         <div className="max-w-3xl border-t border-neutral-100 pt-16 pb-16 lg:pt-24 lg:pb-24">
           <h2 className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-600">
