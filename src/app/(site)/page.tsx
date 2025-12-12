@@ -1,3 +1,13 @@
+import type { Metadata } from "next";
+import { createMetadata } from "../lib/seo";
+
+export const metadata: Metadata = createMetadata({
+  title: "Lucid Suspension – Demystifying dirt bike suspension",
+  description:
+    "Suspension, made clear. Lucid is a transparent, rider-first dirt bike fork and shock service built around clarity, fresh wear parts, and careful work — launching 2026.",
+  canonical: "/",
+});
+
 export default function HomePage() {
   return (
     <>
@@ -40,7 +50,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* why lucid */}
+      {/* why Lucid */}
       <section className="scroll-mt-24">
         <div className="max-w-3xl border-t border-neutral-100 pt-16 pb-16 lg:pt-24 lg:pb-24">
           <h2 className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-600">
@@ -121,7 +131,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* the lucid experience */}
+      {/* the Lucid Experience */}
       <section className="scroll-mt-24">
         <div className="max-w-3xl border-t border-neutral-100 pt-16 pb-16 lg:pt-24 lg:pb-24">
           <h2 className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-600">
