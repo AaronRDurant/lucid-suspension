@@ -1,11 +1,15 @@
 "use client";
 
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  ReactNode,
+} from "react";
 
 type Variant = "primary" | "secondary" | "ghost";
 type Size = "sm" | "md";
 
-type BaseProps = {
+type CommonProps = {
   variant?: Variant;
   size?: Size;
   href?: string;
@@ -14,17 +18,21 @@ type BaseProps = {
   children: ReactNode;
 };
 
-type ButtonProps = BaseProps &
+type ButtonProps = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     href?: undefined;
   };
 
-type LinkProps = BaseProps &
-  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+type LinkProps = CommonProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
     href: string;
   };
 
 export type CTAButtonProps = ButtonProps | LinkProps;
+
+function cn(...values: Array<string | false | null | undefined>) {
+  return values.filter(Boolean).join(" ");
+}
 
 function getVariantClasses(variant: Variant) {
   switch (variant) {
@@ -48,7 +56,7 @@ function getSizeClasses(size: Size) {
   }
 }
 
-// CTAButton is the primary action button for email, checkout, and portal actions.
+// ctaButton is the primary action button for email, checkout, and portal actions.
 export function CTAButton(props: CTAButtonProps) {
   const {
     variant = "primary",
@@ -57,21 +65,19 @@ export function CTAButton(props: CTAButtonProps) {
     className,
     children,
     ...rest
-  } = props as CTAButtonProps & {
-    href?: string;
-  };
+  } = props;
 
   const baseClasses =
-    "inline-flex items-center justify-center rounded-full font-medium uppercase tracking-[0.2em] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-60";
+    "inline-flex items-center justify-center rounded-full font-medium uppercase tracking-[0.2em] transition " +
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 " +
+    "focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-60";
 
-  const classes = [
+  const classes = cn(
     baseClasses,
     getVariantClasses(variant),
     getSizeClasses(size),
-    className ?? "",
-  ]
-    .filter(Boolean)
-    .join(" ");
+    className
+  );
 
   const content = (
     <span className="flex items-center gap-2">
@@ -82,17 +88,31 @@ export function CTAButton(props: CTAButtonProps) {
     </span>
   );
 
+  // link mode
   if ("href" in props && props.href) {
-    const { href, ...linkRest } =
-      rest as React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-        href: string;
-      };
+    const { href, onClick, ...linkRest } =
+      rest as AnchorHTMLAttributes<HTMLAnchorElement>;
+
+    const isDisabled = !!isLoading || (linkRest["aria-disabled"] as boolean);
+
+    const handleClick: AnchorHTMLAttributes<HTMLAnchorElement>["onClick"] = (
+      event
+    ) => {
+      if (isDisabled) {
+        event.preventDefault();
+        return;
+      }
+      onClick?.(event);
+    };
 
     return (
       <a
         href={href}
         className={classes}
         aria-busy={isLoading || undefined}
+        aria-disabled={isDisabled || undefined}
+        tabIndex={isDisabled ? -1 : linkRest.tabIndex}
+        onClick={handleClick}
         {...linkRest}
       >
         {content}
@@ -100,13 +120,15 @@ export function CTAButton(props: CTAButtonProps) {
     );
   }
 
+  // button mode
   const buttonRest = rest as ButtonHTMLAttributes<HTMLButtonElement>;
+  const disabled = buttonRest.disabled || isLoading;
 
   return (
     <button
       type={buttonRest.type ?? "button"}
       className={classes}
-      disabled={buttonRest.disabled || isLoading}
+      disabled={disabled}
       aria-busy={isLoading || undefined}
       {...buttonRest}
     >

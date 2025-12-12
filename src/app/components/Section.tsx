@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { spacing } from "../lib/design-tokens";
 
 type SectionProps = {
   id?: string;
@@ -11,7 +12,12 @@ type SectionProps = {
   className?: string;
 };
 
-// Section wraps page content blocks with consistent spacing and optional borders.
+// small className helper
+function cn(...values: Array<string | false | null | undefined>) {
+  return values.filter(Boolean).join(" ");
+}
+
+// section wraps page content blocks with consistent spacing and optional borders.
 export function Section({
   id,
   eyebrow,
@@ -22,38 +28,44 @@ export function Section({
   children,
   className,
 }: SectionProps) {
-  const borders = [
-    borderTop ? "border-t border-neutral-100" : "",
-    borderBottom ? "border-b border-neutral-100" : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const hasHeader = eyebrow || title || description;
 
   return (
     <section
       id={id}
-      className={`scroll-mt-24 ${borders} ${className ?? ""}`.trim()}
+      className={cn(
+        "scroll-mt-24",
+        borderTop && "border-t border-neutral-100",
+        borderBottom && "border-b border-neutral-100",
+        className
+      )}
+      style={{
+        // anchor offset for in-page links / vertical nav
+        scrollMarginTop: spacing["3xl"],
+      }}
     >
       <div className="mx-auto max-w-3xl py-12 sm:py-16 lg:py-20">
-        {(eyebrow || title || description) && (
+        {hasHeader ? (
           <header className="mb-8 space-y-3">
             {eyebrow ? (
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-neutral-600">
                 {eyebrow}
               </p>
             ) : null}
+
             {title ? (
               <h2 className="text-xl font-semibold tracking-tight text-neutral-900 sm:text-2xl">
                 {title}
               </h2>
             ) : null}
+
             {description ? (
               <p className="text-base leading-relaxed text-neutral-800">
                 {description}
               </p>
             ) : null}
           </header>
-        )}
+        ) : null}
 
         {children}
       </div>

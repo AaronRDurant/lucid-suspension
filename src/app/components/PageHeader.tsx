@@ -1,16 +1,24 @@
 import type { ReactNode } from "react";
+import { typography } from "../lib/design-tokens";
 
-type PageHeaderProps = {
+type PageHeaderAlign = "left" | "center";
+
+export type PageHeaderProps = {
   eyebrow?: string;
   title: string;
   description?: string;
-  align?: "left" | "center";
+  align?: PageHeaderAlign;
   kicker?: string;
   actions?: ReactNode;
   className?: string;
 };
 
-// PageHeader is the hero-style header for top-of-page intros.
+// simple class merge helper
+function cn(...values: Array<string | false | null | undefined>) {
+  return values.filter(Boolean).join(" ");
+}
+
+// page header is the hero-style intro for top-of-page sections
 export function PageHeader({
   eyebrow,
   title,
@@ -20,32 +28,72 @@ export function PageHeader({
   actions,
   className,
 }: PageHeaderProps) {
-  const alignment =
+  const alignmentClass =
     align === "center" ? "items-center text-center" : "items-start text-left";
 
   return (
     <header
-      className={`flex flex-col gap-6 ${alignment} ${className ?? ""}`.trim()}
+      className={cn(
+        "flex flex-col gap-6",
+        // consistent hero spacing
+        "pt-12 pb-10 sm:pt-16 sm:pb-12",
+        alignmentClass,
+        className
+      )}
     >
       <div className="space-y-3">
         {eyebrow ? (
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-neutral-600">
+          <p
+            className="text-neutral-600"
+            style={{
+              fontSize: typography.eyebrow.fontSize,
+              lineHeight: typography.eyebrow.lineHeight,
+              letterSpacing: typography.eyebrow.letterSpacing,
+              textTransform: typography.eyebrow.textTransform,
+              fontWeight: typography.eyebrow.fontWeight,
+            }}
+          >
             {eyebrow}
           </p>
         ) : null}
 
-        <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+        <h1
+          className="text-neutral-900"
+          style={{
+            fontSize: typography.display.fontSize,
+            lineHeight: typography.display.lineHeight,
+            letterSpacing: typography.display.letterSpacing,
+            fontWeight: typography.display.fontWeight,
+          }}
+        >
           {title}
         </h1>
 
         {description ? (
-          <p className="max-w-2xl text-base leading-relaxed text-neutral-800">
+          <p
+            className="max-w-2xl text-neutral-800"
+            style={{
+              fontSize: typography.body.fontSize,
+              lineHeight: typography.body.lineHeight,
+              letterSpacing: typography.body.letterSpacing,
+              fontWeight: typography.body.fontWeight,
+            }}
+          >
             {description}
           </p>
         ) : null}
 
         {kicker ? (
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-500">
+          <p
+            className="text-neutral-500"
+            style={{
+              fontSize: typography.caption.fontSize,
+              lineHeight: typography.caption.lineHeight,
+              letterSpacing: "0.2em",
+              fontWeight: 500,
+              textTransform: "uppercase",
+            }}
+          >
             {kicker}
           </p>
         ) : null}

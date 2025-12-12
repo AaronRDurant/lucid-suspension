@@ -13,21 +13,28 @@ type ImageShowcaseProps = {
   mode?: Mode;
   images: ShowcaseImage[];
   className?: string;
+  ariaLabel?: string;
 };
 
-// ImageShowcase displays process/results imagery in a consistent layout.
+function cn(...values: Array<string | false | null | undefined>) {
+  return values.filter(Boolean).join(" ");
+}
+
+// imageShowcase displays process/results imagery in a consistent layout.
 export function ImageShowcase({
   mode = "single",
   images,
   className,
+  ariaLabel,
 }: ImageShowcaseProps) {
   if (!images.length) return null;
 
+  // single image layout
   if (mode === "single") {
     const image = images[0];
 
     return (
-      <figure className={className}>
+      <figure className={cn("space-y-3", className)}>
         <div className="overflow-hidden rounded-2xl border border-neutral-100">
           <Image
             src={image.src}
@@ -38,7 +45,7 @@ export function ImageShowcase({
           />
         </div>
         {image.caption ? (
-          <figcaption className="mt-3 text-xs text-neutral-500">
+          <figcaption className="text-xs text-neutral-500">
             {image.caption}
           </figcaption>
         ) : null}
@@ -46,13 +53,14 @@ export function ImageShowcase({
     );
   }
 
+  // before/after comparison
   if (mode === "beforeAfter" && images.length >= 2) {
     const [before, after] = images;
 
     return (
       <div
-        className={`grid gap-4 sm:grid-cols-2 ${className ?? ""}`.trim()}
-        aria-label="before and after comparison"
+        className={cn("grid gap-4 sm:grid-cols-2", className)}
+        aria-label={ariaLabel ?? "before and after comparison"}
       >
         {[before, after].map((image, index) => (
           <figure key={index} className="space-y-2">
@@ -66,7 +74,7 @@ export function ImageShowcase({
               />
             </div>
             <figcaption className="flex items-center justify-between text-xs text-neutral-500">
-              <span className="font-semibold uppercase tracking-[0.2em]">
+              <span className="text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-neutral-600">
                 {index === 0 ? "Before" : "After"}
               </span>
               {image.caption ? <span>{image.caption}</span> : null}
@@ -80,8 +88,8 @@ export function ImageShowcase({
   // grid mode
   return (
     <div
-      className={`grid gap-4 sm:grid-cols-2 ${className ?? ""}`.trim()}
-      aria-label="service images"
+      className={cn("grid gap-4 sm:grid-cols-2", className)}
+      aria-label={ariaLabel ?? "service images"}
     >
       {images.slice(0, 4).map((image, index) => (
         <figure key={index} className="space-y-2">
