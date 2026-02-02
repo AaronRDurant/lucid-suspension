@@ -4,20 +4,13 @@ type GradientSpineProps = {
 
 /**
  * GradientSpine renders the vertical Lucid gradient bar.
- * use this for the global page spine or tall accent dividers.
+ * uses the shared .lucid-gradient-spine token from globals.css.
  */
 export function GradientSpine({ className }: GradientSpineProps) {
   return (
     <div
       aria-hidden="true"
-      className={`
-        h-full w-[6px] rounded-full
-        bg-gradient-to-b
-        from-[var(--lucid-gradient-start)]
-        via-[var(--lucid-gradient-mid2)]
-        to-[var(--lucid-gradient-end)]
-        ${className ?? ""}
-      `.trim()}
+      className={`h-full w-[6px] flex-shrink-0 rounded-full lucid-gradient-spine ${className ?? ""}`.trim()}
     />
   );
 }

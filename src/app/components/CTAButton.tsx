@@ -37,12 +37,12 @@ function cn(...values: Array<string | false | null | undefined>) {
 function getVariantClasses(variant: Variant) {
   switch (variant) {
     case "secondary":
-      return "border border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-900 hover:text-white";
+      return "border border-neutral-600 bg-neutral-900 text-neutral-100 hover:bg-neutral-800 hover:text-neutral-50 hover:border-neutral-500";
     case "ghost":
-      return "border border-transparent text-neutral-900 hover:border-neutral-300 hover:bg-neutral-50";
+      return "border border-transparent text-neutral-100 hover:border-neutral-600 hover:bg-neutral-800";
     case "primary":
     default:
-      return "border border-neutral-900 bg-neutral-900 text-white hover:bg-neutral-800";
+      return "border border-neutral-100 bg-neutral-50 text-neutral-950 hover:bg-neutral-200 hover:border-neutral-200";
   }
 }
 
@@ -56,7 +56,7 @@ function getSizeClasses(size: Size) {
   }
 }
 
-// ctaButton is the primary action button for email, checkout, and portal actions.
+// CTAButton is the primary action for email, checkout, and portal actions.
 export function CTAButton(props: CTAButtonProps) {
   const {
     variant = "primary",
@@ -69,21 +69,21 @@ export function CTAButton(props: CTAButtonProps) {
 
   const baseClasses =
     "inline-flex items-center justify-center rounded-full font-medium uppercase tracking-[0.2em] transition " +
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 " +
-    "focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-60";
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 " +
+    "focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 disabled:cursor-not-allowed disabled:opacity-60";
 
   const classes = cn(
     baseClasses,
     getVariantClasses(variant),
     getSizeClasses(size),
-    className
+    className,
   );
 
   const content = (
     <span className="flex items-center gap-2">
       <span>{children}</span>
       {isLoading ? (
-        <span className="h-1 w-8 animate-pulse rounded-full bg-neutral-300" />
+        <span className="h-1 w-8 animate-pulse rounded-full bg-neutral-500" />
       ) : null}
     </span>
   );
@@ -96,7 +96,7 @@ export function CTAButton(props: CTAButtonProps) {
     const isDisabled = !!isLoading || (linkRest["aria-disabled"] as boolean);
 
     const handleClick: AnchorHTMLAttributes<HTMLAnchorElement>["onClick"] = (
-      event
+      event,
     ) => {
       if (isDisabled) {
         event.preventDefault();

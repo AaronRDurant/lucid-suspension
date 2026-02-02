@@ -10,7 +10,7 @@ function cn(...values: Array<string | false | null | undefined>) {
   return values.filter(Boolean).join(" ");
 }
 
-// gradientDivider is the Lucid-branded accent line for emphasis,
+// GradientDivider is the Lucid-branded accent line for emphasis,
 // not a generic separator.
 export function GradientDivider({
   orientation = "horizontal",

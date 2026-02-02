@@ -20,7 +20,7 @@ function cn(...values: Array<string | false | null | undefined>) {
   return values.filter(Boolean).join(" ");
 }
 
-// imageShowcase displays process/results imagery in a consistent layout.
+// ImageShowcase displays process/results imagery in a consistent layout.
 export function ImageShowcase({
   mode = "single",
   images,
@@ -35,7 +35,7 @@ export function ImageShowcase({
 
     return (
       <figure className={cn("space-y-3", className)}>
-        <div className="overflow-hidden rounded-2xl border border-neutral-100">
+        <div className="overflow-hidden rounded-2xl border border-neutral-800">
           <Image
             src={image.src}
             alt={image.alt}
@@ -45,7 +45,7 @@ export function ImageShowcase({
           />
         </div>
         {image.caption ? (
-          <figcaption className="text-xs text-neutral-500">
+          <figcaption className="text-xs text-neutral-400">
             {image.caption}
           </figcaption>
         ) : null}
@@ -64,7 +64,7 @@ export function ImageShowcase({
       >
         {[before, after].map((image, index) => (
           <figure key={index} className="space-y-2">
-            <div className="overflow-hidden rounded-2xl border border-neutral-100">
+            <div className="overflow-hidden rounded-2xl border border-neutral-800">
               <Image
                 src={image.src}
                 alt={image.alt}
@@ -73,8 +73,8 @@ export function ImageShowcase({
                 className="h-auto w-full object-cover"
               />
             </div>
-            <figcaption className="flex items-center justify-between text-xs text-neutral-500">
-              <span className="text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-neutral-600">
+            <figcaption className="flex items-center justify-between text-xs text-neutral-400">
+              <span className="text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-neutral-500">
                 {index === 0 ? "Before" : "After"}
               </span>
               {image.caption ? <span>{image.caption}</span> : null}
@@ -93,7 +93,7 @@ export function ImageShowcase({
     >
       {images.slice(0, 4).map((image, index) => (
         <figure key={index} className="space-y-2">
-          <div className="overflow-hidden rounded-2xl border border-neutral-100">
+          <div className="overflow-hidden rounded-2xl border border-neutral-800">
             <Image
               src={image.src}
               alt={image.alt}
@@ -103,7 +103,7 @@ export function ImageShowcase({
             />
           </div>
           {image.caption ? (
-            <figcaption className="text-xs text-neutral-500">
+            <figcaption className="text-xs text-neutral-400">
               {image.caption}
             </figcaption>
           ) : null}

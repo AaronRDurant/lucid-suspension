@@ -12,7 +12,7 @@ function cn(...values: Array<string | false | null | undefined>) {
 }
 
 /**
- * eyebrow is for small overline labels like section tags.
+ * Eyebrow is for small overline labels (e.g. section tags).
  */
 export function Eyebrow({
   as: Component = "p",
@@ -21,7 +21,7 @@ export function Eyebrow({
 }: BaseTextProps) {
   return (
     <Component
-      className={cn("text-neutral-600", className)}
+      className={cn("text-neutral-400", className)}
       style={{
         fontSize: typography.eyebrow.fontSize,
         lineHeight: typography.eyebrow.lineHeight,
@@ -36,7 +36,7 @@ export function Eyebrow({
 }
 
 /**
- * caption is for supporting micro-copy below images or cards.
+ * Caption is for supporting micro-copy below images or cards.
  */
 export function Caption({
   as: Component = "p",
@@ -59,7 +59,7 @@ export function Caption({
 }
 
 /**
- * lead is for intro paragraphs at the top of a section.
+ * Lead is for intro paragraphs at the top of a section.
  */
 export function Lead({
   as: Component = "p",
@@ -68,7 +68,7 @@ export function Lead({
 }: BaseTextProps) {
   return (
     <Component
-      className={cn("text-neutral-700", className)}
+      className={cn("text-neutral-300", className)}
       style={{
         fontSize: "1.05rem", // slightly larger than body
         lineHeight: 1.7,
@@ -82,7 +82,7 @@ export function Lead({
 }
 
 /**
- * kicker is for small uppercase meta lines under headings.
+ * Kicker is for small uppercase meta lines under headings.
  */
 export function Kicker({
   as: Component = "p",

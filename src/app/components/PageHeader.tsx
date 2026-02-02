@@ -18,7 +18,7 @@ function cn(...values: Array<string | false | null | undefined>) {
   return values.filter(Boolean).join(" ");
 }
 
-// page header is the hero-style intro for top-of-page sections
+// PageHeader is the hero-style intro for top-of-page sections.
 export function PageHeader({
   eyebrow,
   title,
@@ -38,13 +38,13 @@ export function PageHeader({
         // consistent hero spacing
         "pt-12 pb-10 sm:pt-16 sm:pb-12",
         alignmentClass,
-        className
+        className,
       )}
     >
       <div className="space-y-3">
         {eyebrow ? (
           <p
-            className="text-neutral-600"
+            className="text-neutral-400"
             style={{
               fontSize: typography.eyebrow.fontSize,
               lineHeight: typography.eyebrow.lineHeight,
@@ -58,7 +58,7 @@ export function PageHeader({
         ) : null}
 
         <h1
-          className="text-neutral-900"
+          className="text-neutral-50"
           style={{
             fontSize: typography.display.fontSize,
             lineHeight: typography.display.lineHeight,
@@ -71,7 +71,7 @@ export function PageHeader({
 
         {description ? (
           <p
-            className="max-w-2xl text-neutral-800"
+            className="max-w-2xl text-neutral-200"
             style={{
               fontSize: typography.body.fontSize,
               lineHeight: typography.body.lineHeight,

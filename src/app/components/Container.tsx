@@ -7,7 +7,7 @@ type ContainerProps = {
 
 /**
  * Container keeps content aligned to the Lucid layout grid.
- * use this for page shells so spacing stays consistent.
+ * use for page shells so spacing stays consistent.
  */
 export function Container({ children, className }: ContainerProps) {
   return (

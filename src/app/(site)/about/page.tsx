@@ -10,14 +10,14 @@ export const metadata: Metadata = createMetadata({
 
 export default function AboutPage() {
   return (
-    <section className="max-w-3xl border-t border-neutral-100 pt-16 pb-16 lg:pt-24 lg:pb-24">
-      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-600">
+    <section className="max-w-3xl border-t border-neutral-800 pt-16 pb-16 lg:pt-24 lg:pb-24">
+      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400">
         About
       </p>
-      <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+      <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl text-neutral-50">
         Why Lucid exists.
       </h1>
-      <p className="mt-4 text-base text-neutral-800 leading-relaxed">
+      <p className="mt-4 text-base text-neutral-200 leading-relaxed">
         This page will tell the story behind Lucid Suspension, the standards it
         holds for every job, and how the service is being built with riders in
         mind from day one.

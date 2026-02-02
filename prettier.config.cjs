@@ -1,4 +1,4 @@
-/** Lucid prettier config – keep this in sync across projects if it feels right */
+/** Lucid prettier config – keep in sync across projects if it feels right */
 module.exports = {
   semi: true,
   singleQuote: false,

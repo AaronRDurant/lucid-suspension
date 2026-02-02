@@ -5,7 +5,7 @@ type DividerRuleProps = {
 
 /**
  * DividerRule is the neutral 1px rule used between sections.
- * use this when you want separation without drawing attention.
+ * use when you want separation without drawing attention.
  */
 export function DividerRule({
   orientation = "horizontal",
@@ -19,7 +19,7 @@ export function DividerRule({
       aria-hidden="true"
       className={`
         ${sizeClasses}
-        bg-neutral-100
+        bg-neutral-800
         ${className ?? ""}
       `.trim()}
     />

@@ -1,27 +1,36 @@
 @import "tailwindcss";
 
-/* --- Lucid global tweaks --- */
+/* --- Lucid global tweaks (dark mode) --- */
 :root {
-  --lucid-bg: #ffffff;
-  --lucid-fg: #0a0a0a;
-
-  /* gradient stops */
+  /* gradient stops — Lucid brand accent */
   --lucid-gradient-start: #ff3b1f;
   --lucid-gradient-mid1: #ff005d;
   --lucid-gradient-mid2: #6a00ff;
   --lucid-gradient-end: #00eaff;
 }
 
-html,
-body {
-  background: var(--lucid-bg);
-  color: var(--lucid-fg);
-  font-family: var(--font-inter), sans-serif;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-neutral-950 text-neutral-50 font-sans antialiased;
+    font-family: var(--font-inter), sans-serif;
+    text-rendering: optimizeLegibility;
+  }
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Lucid gradient spine — single source of truth for the Lucid brand gradient */
+.lucid-gradient-spine {
+  background: linear-gradient(
+    to bottom,
+    var(--lucid-gradient-start),
+    var(--lucid-gradient-mid1),
+    var(--lucid-gradient-mid2),
+    var(--lucid-gradient-end)
+  );
 }

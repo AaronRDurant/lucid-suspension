@@ -18,13 +18,14 @@ export type VerticalNavItem = {
 type VerticalNavProps = {
   items: VerticalNavItem[];
   ariaLabel?: string;
+  className?: string;
 };
 
 function classNames(...values: Array<string | false | null | undefined>) {
   return values.filter(Boolean).join(" ");
 }
 
-export function VerticalNav({ items, ariaLabel }: VerticalNavProps) {
+export function VerticalNav({ items, ariaLabel, className }: VerticalNavProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const itemRefs = useRef<Array<HTMLAnchorElement | null>>([]);
@@ -70,7 +71,7 @@ export function VerticalNav({ items, ariaLabel }: VerticalNavProps) {
         target?.focus();
       }
     },
-    [items.length]
+    [items.length],
   );
 
   if (items.length === 0) return null;
@@ -78,22 +79,25 @@ export function VerticalNav({ items, ariaLabel }: VerticalNavProps) {
   return (
     <nav
       aria-label={ariaLabel ?? "site navigation"}
-      className="pointer-events-none fixed bottom-6 right-4 z-40"
+      className={classNames(
+        "pointer-events-none fixed bottom-24 right-6 z-40",
+        className,
+      )}
     >
       <div className="pointer-events-auto flex flex-col items-end gap-3">
         {/* mobile toggle */}
         <button
           type="button"
           onClick={() => setIsOpen((open) => !open)}
-          className="flex items-center gap-2 rounded-full border border-neutral-200 bg-white/80 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-neutral-700 shadow-sm backdrop-blur-sm transition hover:border-neutral-300 hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:hidden"
+          className="flex items-center gap-2 rounded-full border border-neutral-700 bg-neutral-900/90 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-neutral-300 shadow-lg backdrop-blur-sm transition hover:border-neutral-600 hover:text-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 md:hidden"
           aria-expanded={isOpen}
           aria-controls="lucid-vertical-nav"
         >
           <span>menu</span>
           <span
             className={classNames(
-              "h-1 w-1 rounded-full bg-neutral-400 transition",
-              isOpen && "scale-150 bg-neutral-900"
+              "h-1 w-1 rounded-full bg-neutral-500 transition",
+              isOpen && "scale-150 bg-neutral-50",
             )}
           />
         </button>
@@ -103,14 +107,14 @@ export function VerticalNav({ items, ariaLabel }: VerticalNavProps) {
           id="lucid-vertical-nav"
           className={classNames(
             // card geometry
-            "w-full max-w-[280px] rounded-3xl border border-neutral-200/80 bg-white/85 px-4 py-4 shadow-xl backdrop-blur-md transition-all duration-200",
+            "w-full max-w-[280px] rounded-3xl border border-neutral-700/80 bg-neutral-900/90 px-4 py-4 shadow-xl backdrop-blur-md transition-all duration-200",
             "md:px-5 md:py-4",
             // mobile: slide / fade
             isOpen
               ? "translate-y-0 opacity-100"
               : "pointer-events-none translate-y-2 opacity-0",
             // desktop: always visible
-            "md:pointer-events-auto md:translate-y-0 md:opacity-100"
+            "md:pointer-events-auto md:translate-y-0 md:opacity-100",
           )}
         >
           <ul className="flex flex-row gap-1.5 md:flex-col md:gap-2">
@@ -132,21 +136,21 @@ export function VerticalNav({ items, ariaLabel }: VerticalNavProps) {
                     }}
                     className={classNames(
                       "group relative flex items-center gap-2 rounded-2xl px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] transition-all duration-150",
-                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950",
                       isActive
-                        ? "bg-neutral-900/[0.03] text-neutral-900"
-                        : "text-neutral-400 hover:bg-neutral-900/[0.03] hover:text-neutral-900"
+                        ? "bg-neutral-100/[0.08] text-neutral-50"
+                        : "text-neutral-400 hover:bg-neutral-100/[0.06] hover:text-neutral-50",
                     )}
                   >
                     {/* active indicator */}
                     <span
                       aria-hidden="true"
                       className={classNames(
-                        "h-6 w-[3px] rounded-full bg-gradient-to-b from-[#ff3b1f] via-[#6a00ff] to-[#00eaff]",
+                        "h-6 w-[3px] rounded-full lucid-gradient-spine",
                         "origin-center transition-all duration-200",
                         isActive
                           ? "scale-y-100 opacity-100"
-                          : "scale-y-0 opacity-0 group-hover:scale-y-100 group-hover:opacity-70"
+                          : "scale-y-0 opacity-0 group-hover:scale-y-100 group-hover:opacity-70",
                       )}
                     />
                     <span className="translate-y-[0.5px]">{item.label}</span>
