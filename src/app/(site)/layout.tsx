@@ -18,7 +18,9 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-50">
       <div className="relative mx-auto flex max-w-6xl flex-col px-6 pt-10 pb-20 md:pl-24 lg:px-10 lg:pb-24 lg:pt-12">
-        <main className="min-w-0 flex-1 md:mr-[100px]">{children}</main>
+        <main className="min-w-0 flex-1 md:mr-[100px]">
+          <div className="mx-auto w-full max-w-3xl">{children}</div>
+        </main>
         {/* aside: gradient spine + reserved space for fixed nav */}
         <aside
           className="pointer-events-none absolute right-0 top-0 hidden h-full w-[100px] md:block"
