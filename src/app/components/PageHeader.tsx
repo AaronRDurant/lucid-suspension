@@ -6,7 +6,7 @@ type PageHeaderAlign = "left" | "center";
 export type PageHeaderProps = {
   eyebrow?: string;
   title: string;
-  description?: string;
+  description?: ReactNode;
   align?: PageHeaderAlign;
   kicker?: string;
   actions?: ReactNode;
